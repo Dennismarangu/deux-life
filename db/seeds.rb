@@ -77,3 +77,12 @@ image_url: Faker::LoremPixel.image(size: "200x200", is_gray: false)
   )
 main
 end
+
+5.times do
+  Booking.create!(
+    user_name: Faker::Name.name,
+    room_id: Room.pluck(:id).sample,
+    check_in_date: Faker::Date.between(from: Date.today, to: Date.today + 30),
+    check_out_date: Faker::Date.between(from: Date.today + 31, to: Date.today + 60)
+  )
+end
