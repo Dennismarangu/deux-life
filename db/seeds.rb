@@ -1,5 +1,6 @@
 require 'faker'
 
+dennis/service
 # Create restaurant-food services
 restaurant_food_categories = ['Food Menu']
 restaurant_food_categories.each do |category|
@@ -65,4 +66,14 @@ service_description: amenity[:description],
 head_of_service: Faker::Name.name,
 image_url: Faker::LoremPixel.image(size: "200x200", is_gray: false)
 )
+=======
+# Generate 10 room records
+10.times do
+  Room.create(
+    room_name: Faker::Lorem.word,
+    room_description: Faker::Lorem.sentence,
+    room_price: Faker::Number.decimal(l_digits: 3, r_digits: 2),
+    is_booked: Faker::Boolean.boolean
+  )
+main
 end
