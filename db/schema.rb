@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_02_093125) do
+ActiveRecord::Schema.define(version: 2023_07_03_042700) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 2023_07_02_093125) do
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "service_name", null: false
+    t.decimal "service_cost", precision: 8, scale: 2, default: "0.0", null: false
+    t.text "service_description", limit: 255
+    t.string "head_of_service", null: false
   end
 
 end
