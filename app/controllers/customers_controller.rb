@@ -25,9 +25,9 @@ class CustomersController < ApplicationController
     def update
         customer = find_customer
         if customer
-            new_customer = customer.update(customer_params)
-            if new_customer.valid?
-                render json: new_customer
+            customer.update(customer_params)
+            if customer.valid?
+                render json: customer
             else
                 render json: { error: customer.errors.full_messages }, status: :unprocessable_entity
             end
