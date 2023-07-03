@@ -42,4 +42,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     end
   end
 
+   # DELETE /customer_services/:id
+  def destroy
+    @customer_service.destroy
+    head :no_content
+  end
+
 end
