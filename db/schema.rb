@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_02_093125) do
+ActiveRecord::Schema.define(version: 2023_07_03_131941) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(version: 2023_07_02_093125) do
   create_table "customers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone"
+    t.string "password_digest"
   end
 
   create_table "rooms", force: :cascade do |t|
