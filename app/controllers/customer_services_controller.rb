@@ -64,4 +64,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     render json: { error: 'Record not found' }, status: :not_found
   end
 
+   def parameter_missing(exception)
+    render json: { error: exception.message }, status: :unprocessable_entity
+  end
+
 end
