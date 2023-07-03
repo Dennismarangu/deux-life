@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2023_07_03_042700) do
     t.decimal "service_cost", precision: 8, scale: 2, default: "0.0", null: false
     t.text "service_description", limit: 255
     t.string "head_of_service", null: false
+    t.string "image_url"
   end
 
 end
