@@ -56,4 +56,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     render json: { error: 'Customer service not found' }, status: :not_found
   end
 
+   def customer_service_params
+    params.permit(:customer_id, :service_id, :request_date, :quantity)
+  end
+
 end
