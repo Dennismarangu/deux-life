@@ -3,5 +3,8 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
     render json: @bookings
   end
-  
+
+  def show
+    render json: @booking
+  end
 end
