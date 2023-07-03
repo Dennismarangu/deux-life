@@ -2,11 +2,16 @@ class ServicesController < ApplicationController
 
   def index
     @services = Service.all
-    # Add any additional logic needed
+    render json: @services, status: :ok
   end
 
     def show
     @service = Service.find(params[:id])
-    # Add any additional logic needed
+
+    if @service
+      render json: @service: [:id, :service_name, :service_cost, :service_description, :head_of_service]
+    else
+      render json: {error: "Service not found"}, status: :not_found
+    end
   end
 end
