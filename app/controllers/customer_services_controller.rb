@@ -11,4 +11,9 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     render json: customer_services
   end
 
+    # GET /customer_services/:id
+  def show
+    render json: @customer_service
+  end
+
 end
