@@ -48,4 +48,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     head :no_content
   end
 
+   private
+
+  def set_customer_service
+    @customer_service = CustomerService.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Customer service not found' }, status: :not_found
+  end
+
 end
