@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_03_131941) do
+ActiveRecord::Schema.define(version: 2023_07_03_185902) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "user_name"
+    t.integer "room_id"
+    t.date "check_in_date"
+    t.date "check_out_date"
   end
 
   create_table "customer_services", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "service_id"
+    t.date "request_date"
+    t.integer "quantity"
+    t.float "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,11 +44,20 @@ ActiveRecord::Schema.define(version: 2023_07_03_131941) do
   create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "room_name"
+    t.string "room_description"
+    t.decimal "room_price", precision: 10, scale: 2
+    t.boolean "is_booked"
   end
 
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "service_name", null: false
+    t.decimal "service_cost", precision: 8, scale: 2, default: "0.0", null: false
+    t.text "service_description", limit: 255
+    t.string "head_of_service", null: false
+    t.string "image_url"
   end
 
 end

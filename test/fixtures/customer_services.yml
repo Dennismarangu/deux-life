@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  service_id: 1
+  request_date: 2023-07-03
+  quantity: 1
+  total_price: 1.5
+
+two:
+  customer_id: 1
+  service_id: 1
+  request_date: 2023-07-03
+  quantity: 1
+  total_price: 1.5
