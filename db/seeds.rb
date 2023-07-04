@@ -66,3 +66,4 @@ head_of_service: Faker::Name.name,
 image_url: Faker::LoremPixel.image(size: "200x200", is_gray: false)
 )
 end
+
