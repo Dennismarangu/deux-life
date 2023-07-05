@@ -10,25 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_03_185902) do
+ActiveRecord::Schema.define(version: 2023_07_05_072001) do
 
   create_table "bookings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "user_name"
     t.integer "room_id"
     t.date "check_in_date"
     t.date "check_out_date"
+    t.integer "customer_id"
+    t.index ["customer_id"], name: "index_bookings_on_customer_id"
   end
 
   create_table "customer_services", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "service_id"
     t.date "request_date"
     t.integer "quantity"
-    t.float "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "service_id"
+    t.float "total_price"
+    t.integer "customer_id"
+    t.index ["customer_id"], name: "index_customer_services_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
