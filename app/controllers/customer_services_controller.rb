@@ -17,21 +17,25 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   end
 
    # POST /customer_services
-  def create
+   def create
     @customer_service = CustomerService.new(customer_service_params)
-
-    # Fetch the service price based on service_id from Services table
-    service_price = 10.0
-
+    service = Service.find(params[:customer_service][:service_id])
+  
+    # Extract quantity from params as an integer
+    quantity = params[:customer_service][:quantity].to_i
+    @customer_service.quantity = quantity
+  
     # Calculate total_price
-    @customer_service.total_price = params[:quantity] * service_price
-
+    @customer_service.total_price = service.service_cost * quantity
+  
     if @customer_service.save
       render json: @customer_service, status: :created
     else
       render json: @customer_service.errors, status: :unprocessable_entity
     end
   end
+  
+  
 
    # PATCH /customer_services/:id
   def update
