@@ -5,21 +5,51 @@ class BookingsController < ApplicationController
   end
 
   def show
-    render json: @booking
+    @booking = set_booking
+    if @booking
+      render json: @booking
+    else
+      render json: { error: "Oops! Booking not found!" }, status: :not_found
+    end
+  end
+
+  def create
+    @booking = Booking.create(booking_params)
+      if @booking.valid?
+        render json: @booking
+      else
+        render json: @booking.errors, status: :unprocessable_entity
+      end
   end
 
   def update
-    if @booking.update(booking_params)
-      render json: @booking
+    @booking = set_booking
+    if @booking
+        @booking.update(booking_params)
+        if @booking.valid?
+          render json: @booking
+        else
+          render json: @booking.errors, status: :unprocessable_entity
+        end   
     else
-      render json: @booking.errors, status: :unprocessable_entity
+      render json: { error: "Oops! Booking not found!" }, status: :not_found
+    end
+  end
+
+  def destroy
+    @booking = set_booking
+    if @booking
+      @booking.destroy
+      head :no_content
+    else
+      render json: { error: "Oops! Booking not found!" }, status: :not_found
     end
   end
 
   private
 
   def set_booking
-    @booking = Booking.find(params[:id])
+    Booking.find(params[:id])
   end
 
   def booking_params
