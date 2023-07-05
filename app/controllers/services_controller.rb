@@ -9,7 +9,7 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
 
     if @service
-      render json: @service: [:id, :service_name, :service_cost, :service_description, :head_of_service]
+      render json: @service, except: [:created_at, :updated_at]
     else
       render json: {error: "Service not found"}, status: :not_found
     end
