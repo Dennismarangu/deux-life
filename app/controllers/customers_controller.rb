@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+    before_action :require_login, only: [:update, :destroy]
+
     def index
         customers = Customer.all
         render json: customers
@@ -16,7 +18,15 @@ class CustomersController < ApplicationController
     def create
         customer = Customer.create(customer_params)
         if customer.valid?
-            render json: customer, status: :created
+            save_user(customer.id)
+            token = encode(customer.id, customer.email)
+            session[:customer_id] = customer.id
+            # blob = ActiveStorage::Blob.find(user.id)
+            # image = url_for(blob)
+            customer = customer.attributes.except('updated_at', 'created_at', 'password_digest')
+
+            app_response(message: 'Registration was successful', status: :created, data: {user: customer, token: token})
+            #render json: customer, status: :created
         else
             render json: { error: customer.errors.full_messages }, status: :unprocessable_entity
         end
